@@ -144,6 +144,7 @@ class Game():
         self.screen.blit(wave.text, wave.rect)
         pygame.display.flip()
 
+
     def run_menu(self):
         for event in pygame.event.get():
             if event.type == KEYDOWN:
