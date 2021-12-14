@@ -10,6 +10,8 @@ game = Game(800, 600)
 # Bugs
 # sometimes the enemy ship gets stuck on the bottom y axis, x axis is fine
 
+# test
+
 mixer.music.load("assets\Sounds\SkyFire (Title Screen).ogg")
 mixer.music.set_volume(0.1)
 mixer.music.play(loops=-1)
