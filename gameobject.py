@@ -5,6 +5,8 @@ from pygame import mixer
 from asset_loader import *
 
 
+# creats a gameobject class that inhertes from sprite
+# sprite is a pygame module for sprite groups which are an efficent way to handle sprites(images)
 class GameObject(Sprite):
     x, y, w, h, image = 0, 0, 0, 0, 0
 
@@ -20,10 +22,11 @@ class GameObject(Sprite):
     def update(self, deltatime):
         pass
 
-
+# this is the class for the background
 class Background(GameObject):
 
     def __init__(self,x,y,w,h,image,layer):
+        # uses super to get the contructers from gameobject
         super().__init__(x,y,w,h,image,layer)
         self.id = "bg"
         
@@ -31,8 +34,10 @@ class Background(GameObject):
     def update(self, deltatime):
         pass
 
+# this is the class for the player
 class Player(GameObject):
     def __init__(self,x,y,w,h,image,layer,shootspeed):
+        # uses super to get the contructers from gameobject
         super().__init__(x,y,w,h,image,layer)
         self.movespeed = 500
         self.velo = [0,0]
@@ -43,7 +48,11 @@ class Player(GameObject):
 
 
     def update(self, deltatime):
+        # this checks what key is being pressed
         keys=pygame.key.get_pressed()
+
+        # this is all for the borders to make sure the player doesnt go out of bounds
+        # borders
         if self.x > 700:
             self.x = 700
         if self.x < 0:
@@ -52,6 +61,8 @@ class Player(GameObject):
             self.y = 525
         if self.y < 400:
             self.y = 400
+
+        # checks input and changes velocity accordingly
         if keys[K_a]:
             self.velo[0] = -1
         elif keys[K_d]:
@@ -64,6 +75,8 @@ class Player(GameObject):
             self.velo[1] = 1
         else:
             self.velo[1] = 0
+
+        # moves speed with velocity that is set above
         self.x += self.velo[0] * self.movespeed * deltatime
         self.y += self.velo[1] * self.movespeed * deltatime
         self.rect.x = self.x
@@ -71,5 +84,8 @@ class Player(GameObject):
         self.shoottimer += deltatime
     
     def takedamage(self):
+        # palys a sound when the player takes damage
         pygame.mixer.Sound.play(assets["player damage"])
+
+        # takes health away from the player
         self.health -= 1
