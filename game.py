@@ -158,46 +158,67 @@ class Game():
                     self.player.shoottimer = 0
 
             
+            # closes teh game if you click the x at the top right
             if event.type == pygame.QUIT:
                 self.doClose = True
                 self.save()
                 pygame.quit()
                 exit(0)
 
-        # wave
+        # this checks if we should start the next wave and if so it does
         if self.nextwave:
             self.spawn_waves()
+            # sets nextwave to false so it needs to be turned on again
             self.nextwave = False
             
+        # checks if next wave should be equal to true by checking the enemy num
         if self.enemynum < 1:
             self.wave += 1
             self.nextwave = True
 
 
 
-        # delete bullets and enemy damage
+        # bullet collision
+
+        # this makes an array with every bullet that hit an enemy
         bullet_hits = pygame.sprite.groupcollide(self.playerbullets, self.enemys, False, False)
+
+        # for loop that goes through each bullet and sees if it has hit an enemy
         for hits in bullet_hits:
             for collision in bullet_hits[hits]:
+                # this method deals damage to the enemy it is located in enemy.py
                 collision.dealdamage() # deal damage to enemy here
+
+                # if the health of the enemy is zero it will kill the enemy
                 if collision.health <= 0:
                     collision.kill()
+                    # it will also lower the number of enemys by 1
                     self.enemynum -= 1
+            # this line of code makes sure the bullet dies
             hits.kill() # kill the bullet
-    
+
+
+        # this code determins where the enemys spawn
+
         enemys = pygame.sprite.groupcollide(self.enemys, self.enemys, False, False)
         for enemy in enemys:
+            # this checks the collision of the enemy
             for collision in enemys[enemy]:
                 if enemy.id != collision.id:
+                    # if the enemys x,y is zero(default) it will change them
                     if enemy.y == 0:
                         enemy.y = random.randint(0, 385)
                     if enemy.x == 0:
                         enemy.x = random.randint(0, 800)
 
+        # this makes an array with every bullet that hit a player
         enemy_bullet_hits = pygame.sprite.groupcollide(enemy_bullets, self.objects, False, False)
+        
+        # for loop that goes through each bullet and sees if it has hit a player
         for hits in enemy_bullet_hits:
             for collision in enemy_bullet_hits[hits]:
                 if collision.id == "player":
+                    # this metod makes the player take damage, the method is located in gameobject.py
                     self.player.takedamage()
                     hits.kill()
 
