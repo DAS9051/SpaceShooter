@@ -52,6 +52,12 @@ class Game():
     title = TextObject(assets["font_16"], (800,500), 0, True)
     title.SetValue("WELCOME TO SPACE SHOOTER!      Click SPACE to start", assets["font_16"])
 
+    pausetitle = TextObject(assets["font_25"], (800,300), 0, True)
+    pausetitle.SetValue("PAUSED", assets["font_25"])
+
+    pause = TextObject(assets["font_25"], (800,500), 0, True)
+    pause.SetValue("Click Space or ESC to continue", assets["font_25"])
+
     def __init__(self, width, height):
         self.screen = pygame.display.set_mode((width, height))
 
@@ -61,6 +67,8 @@ class Game():
             self.run_menu()
         elif self.gameState == "game":
             self.run_game()
+        elif self.gameState == "pause":
+            self.run_pause()
         
         self.deltatime = time()-self.starttime
 
@@ -68,8 +76,8 @@ class Game():
         # event loop
         for event in pygame.event.get():
             if event.type == KEYDOWN:
-                if (event.key == K_SPACE):
-                    self.gameState = "menu"
+                if (event.key == K_SPACE or event.key == K_ESCAPE):
+                    self.gameState = "pause"
                     mixer.music.load("assets\Sounds\SkyFire (Title Screen).ogg")
                     mixer.music.set_volume(0.1)
                     mixer.music.play(loops=-1)
@@ -148,7 +156,7 @@ class Game():
     def run_menu(self):
         for event in pygame.event.get():
             if event.type == KEYDOWN:
-                if (event.key == K_SPACE):
+                if (event.key == K_SPACE or event.key == K_ESCAPE):
                     self.gameState = "game"
                     mixer.music.load("assets\Sounds\Battle in the Stars.ogg")
                     mixer.music.set_volume(0.1)
@@ -160,4 +168,22 @@ class Game():
         
         self.screen.fill((255,255,255))
         self.screen.blit(self.title.text, self.title.rect)
+        pygame.display.flip()
+    
+    def run_pause(self):
+        for event in pygame.event.get():
+            if event.type == KEYDOWN:
+                if (event.key == K_SPACE or event.key == K_ESCAPE):
+                    self.gameState = "game"
+                    mixer.music.load("assets\Sounds\Battle in the Stars.ogg")
+                    mixer.music.set_volume(0.1)
+                    mixer.music.play(-1)
+            if event.type == pygame.QUIT:
+                self.doClose = True
+                pygame.quit()
+                exit(0)
+        
+        self.screen.fill((255,255,255))
+        self.screen.blit(self.pausetitle.text, self.pausetitle.rect)
+        self.screen.blit(self.pause.text, self.pause.rect)
         pygame.display.flip()
