@@ -36,6 +36,11 @@ class Game():
     wave = 0
     enemynum = 0
 
+    with open('data.json', 'r') as f:
+        data = json.load(f)
+
+    highscore = data['highscore']
+    print(highscore)
 
     for i in range(4):
         for j in range(4):
@@ -49,6 +54,8 @@ class Game():
             self.enemys.add(x)
             self.enemynum += 1
 
+    # highscore = TextObject(assets["font_16"], (800,200), 0, True)
+    # highscore.SetValue(f"Highscore: {highscore}", assets["font_16"])
 
     title = TextObject(assets["font_16"], (800,500), 0, True)
     title.SetValue("WELCOME TO SPACE SHOOTER!      Click SPACE to start", assets["font_16"])
@@ -192,6 +199,7 @@ class Game():
                 exit(0)
         
         self.screen.fill((255,255,255))
+        # self.screen.blit(self.highscore.text, self.highscore.rect)
         self.screen.blit(self.pausetitle.text, self.pausetitle.rect)
         self.screen.blit(self.pause.text, self.pause.rect)
         pygame.display.flip()
