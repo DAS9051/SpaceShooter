@@ -72,12 +72,6 @@ class Game():
     # enemy num is what determines if you have killed everything in the wave. 0 means no more enemys which will start the next wave
     enemynum = 0
 
-    # this loads the highscore
-    with open('data.json', 'r') as f:
-        data = json.load(f)
-
-    highscore = data['highscore']
-
 
     # this loops the background so it will fill the whole screen. I need to do this because the background is smaller then the resoultion
     # of the scren
@@ -103,8 +97,7 @@ class Game():
             # this increases the enemy num so we can keep track of all the enemys
             self.enemynum += 1
 
-    # highscore = TextObject(assets["font_16"], (800,200), 0, True)
-    # highscore.SetValue(f"Highscore: {highscore}", assets["font_16"])
+
 
     # this is making the text for the title
     title = TextObject(assets["font_16"], (800,500), 0, True)
@@ -270,16 +263,7 @@ class Game():
                 exit(0)
         
         self.screen.fill((255,255,255))
-        # self.screen.blit(self.highscore.text, self.highscore.rect)
         self.screen.blit(self.pausetitle.text, self.pausetitle.rect)
         self.screen.blit(self.pause.text, self.pause.rect)
         pygame.display.flip()
     
-    def save(self):
-        with open('data.json', 'r') as f:
-            data = json.load(f)
-
-        data["highscore"] = self.wave+1
-
-        with open('data.json', 'w') as f:
-            json.dump(data,f)
