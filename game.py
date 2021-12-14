@@ -14,63 +14,120 @@ from pygame import mixer
 import json
 
 class Game():
+    # sets resolution of screen
     screen = pygame.display.set_mode((800, 600))
+
+    # makes the game start in the main menu
     gameState = "menu"
+
+    # this boolean is responsible for if the game should close in main.py
     doClose = False
+
+    # these 2 lines are responsible for making the variables for the deltatime
     starttime = 0
     deltatime = 0
+
+    # sets a caption on the window
     pygame.display.set_caption("Space Shooter")
+
+    # these 2 lines of code are resonsible for the icon of the window
     icon = pygame.image.load("assets\PNG\playerShip2_red.png")
     pygame.display.set_icon(icon)
+
+    # this initializes the mixer in pygame
     mixer.init()
+
+    # this calls the LoadAssets Function from asset_loader
     LoadAssets()
+
+    # this loads all the waves from wave.py
     load_waves()
+
+    # this creates the background
     bg = Background(0,0,256,256,assets["background_black"], 0)
+
+    # this creates the object player
     player = Player(350.5,0,99,75, assets["playerShip1_blue"], 2, 0.2)
+
+    # this adds the bg and the player to the layer
     objects = pygame.sprite.LayeredUpdates()
+
+    # creates a layer for the players bullets
     playerbullets = pygame.sprite.LayeredUpdates()
+
+    # makes an enemy layer
     enemys = pygame.sprite.LayeredUpdates()
+    
+    # adds bg and player to the layer
     objects.add(bg)
     objects.add(player)
+
+    # sets next wave to True so it will start on wave 1
     nextwave = True
+
+    # sets the wave to 0
     wave = 0
+
+    # sets the enemy num to 0
+    # enemy num is what determines if you have killed everything in the wave. 0 means no more enemys which will start the next wave
     enemynum = 0
 
+    # this loads the highscore
     with open('data.json', 'r') as f:
         data = json.load(f)
 
     highscore = data['highscore']
-    print(highscore)
 
+
+    # this loops the background so it will fill the whole screen. I need to do this because the background is smaller then the resoultion
+    # of the scren
     for i in range(4):
         for j in range(4):
             bg2 = Background(0+(i*256),0+(j*256),256,256, assets["background_purple"], 1)
             objects.add(bg2)
     
+    # this function spawns in all the enemys in the wave
     def spawn_waves(self):
+        # sets enemy num to 0
         self.enemynum = 0
+
+        # this for loop goes through each enemy in wavess
         for x in waves[self.wave].entities:
+            # this creates the first target for the enemy
+            # more target settings can be found in enemy.py
             x.target = [random.randint(0, 675), random.randint(0, 385)]
+
+            # this adds all the enemys to the enemys layer so we can easily spawn them in later
             self.enemys.add(x)
+
+            # this increases the enemy num so we can keep track of all the enemys
             self.enemynum += 1
 
     # highscore = TextObject(assets["font_16"], (800,200), 0, True)
     # highscore.SetValue(f"Highscore: {highscore}", assets["font_16"])
 
+    # this is making the text for the title
     title = TextObject(assets["font_16"], (800,500), 0, True)
     title.SetValue("WELCOME TO SPACE SHOOTER!      Click SPACE to start", assets["font_16"])
 
+    # this is making the text for the pause screen title
     pausetitle = TextObject(assets["font_25"], (800,300), 0, True)
     pausetitle.SetValue("PAUSED", assets["font_25"])
 
+    # this is making the text for the pause screen 
     pause = TextObject(assets["font_25"], (800,500), 0, True)
     pause.SetValue("Click Space or ESC to continue", assets["font_25"])
 
+    # this just sets the screen to self.screen
     def __init__(self, width, height):
         self.screen = pygame.display.set_mode((width, height))
 
+    # this is the main loop for my game
     def loop(self):
+        # this is for the start time it is how we can calculate the deltatime
         self.starttime = time()
+
+        # this if statment is for determining what scene we are in, in the game
         if self.gameState == "menu":
             self.run_menu()
         elif self.gameState == "game":
@@ -78,22 +135,36 @@ class Game():
         elif self.gameState == "pause":
             self.run_pause()
         
+        # this is how we find deltatime
         self.deltatime = time()-self.starttime
 
+    # this is the game loop
     def run_game(self):
         # event loop
+
+        # this checks key board inputs
         for event in pygame.event.get():
             if event.type == KEYDOWN:
+                # checks if you click the space bar or ESC
                 if (event.key == K_SPACE or event.key == K_ESCAPE):
+                    # puts the game on pause and puts the pause music on
                     self.gameState = "pause"
                     mixer.music.load("assets\Sounds\SkyFire (Title Screen).ogg")
                     mixer.music.set_volume(0.1)
                     mixer.music.play(loops=-1)
 
+            # checks if the player clicks
             if event.type == MOUSEBUTTONDOWN:
+                # this shoots a bullet if the player clcks
+
+                # this makes sure you dont spam
                 if self.player.shoottimer > self.player.shootspeed:
+                    # spawns the player bullet
                     self.playerbullets.add(Projectile((self.player.x+43), self.player.y, 13, 37, assets["Lazer"], 500, 1, [0,-1], 2))
+                    # puts the shoot timer back to zero
                     self.player.shoottimer = 0
+
+            
             if event.type == pygame.QUIT:
                 self.doClose = True
                 self.save()
