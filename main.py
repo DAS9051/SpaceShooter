@@ -14,6 +14,7 @@ mixer.music.load("assets\Sounds\SkyFire (Title Screen).ogg")
 mixer.music.set_volume(0.1)
 mixer.music.play(loops=-1)
 
+
 while winOpen:
     if not game.doClose:
         game.loop()

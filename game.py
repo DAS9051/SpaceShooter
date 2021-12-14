@@ -11,6 +11,7 @@ from static import *
 from textobject import TextObject
 from wave import load_waves
 from pygame import mixer
+import json
 
 class Game():
     screen = pygame.display.set_mode((800, 600))
@@ -88,6 +89,7 @@ class Game():
                     self.player.shoottimer = 0
             if event.type == pygame.QUIT:
                 self.doClose = True
+                self.save()
                 pygame.quit()
                 exit(0)
 
@@ -129,15 +131,20 @@ class Game():
                     hits.kill()
 
         if self.player.health < 1:
+            self.save()
             pygame.quit()
             exit(0)
 
         # user interface        
+
+        # health bar
         health = TextObject(assets["font_25"], (700,550), 0, False)
         health.SetValue(f"Health: {self.player.health}", assets["font_25"])
 
+        # wave bar
         wave = TextObject(assets["font_16"], (700,500), 0, False)
         wave.SetValue(f"Wave: {self.wave+1}", assets["font_25"])
+
         #update
         self.objects.update(self.deltatime)
         self.enemys.update(self.deltatime)
@@ -150,6 +157,7 @@ class Game():
         enemy_bullets.draw(self.screen)
         self.screen.blit(health.text, health.rect)
         self.screen.blit(wave.text, wave.rect)
+
         pygame.display.flip()
 
 
@@ -187,3 +195,12 @@ class Game():
         self.screen.blit(self.pausetitle.text, self.pausetitle.rect)
         self.screen.blit(self.pause.text, self.pause.rect)
         pygame.display.flip()
+    
+    def save(self):
+        with open('data.json', 'r') as f:
+            data = json.load(f)
+
+        data["highscore"] = self.wave+1
+
+        with open('data.json', 'w') as f:
+            json.dump(data,f)
