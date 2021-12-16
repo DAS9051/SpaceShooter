@@ -111,6 +111,11 @@ class Game():
     pause = TextObject(assets["font_25"], (800,500), 0, True)
     pause.SetValue("Click Space or ESC to continue", assets["font_25"])
 
+    # this is making the text for the Death Screen
+    death = TextObject(assets["font_25"], (800,500), 0, True)
+    death.SetValue("You Have lost", assets["font_25"])
+
+
     # this just sets the screen to self.screen
     def __init__(self, width, height):
         self.screen = pygame.display.set_mode((width, height))
@@ -127,6 +132,8 @@ class Game():
             self.run_game()
         elif self.gameState == "pause":
             self.run_pause()
+        elif self.gameState == "gameover":
+            self.run_gameover()
         
         # this is how we find deltatime
         self.deltatime = time()-self.starttime
@@ -223,9 +230,8 @@ class Game():
                     hits.kill()
 
         if self.player.health < 1:
-            self.save()
-            pygame.quit()
-            exit(0)
+            pygame.mixer.Sound.play(assets["player damage"])
+            self.gameState = "gameover"
 
         # user interface        
 
@@ -288,3 +294,14 @@ class Game():
         self.screen.blit(self.pause.text, self.pause.rect)
         pygame.display.flip()
     
+
+    def run_gameover(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.doClose = True
+                pygame.quit()
+                exit(0)
+        
+        self.screen.fill((255,255,255))
+        self.screen.blit(self.death.text, self.death.rect)
+        pygame.display.flip()

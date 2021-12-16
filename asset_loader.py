@@ -30,6 +30,7 @@ def LoadAssets():
     assets["enemy2"] = pygame.image.load("assets\PNG\Enemies\enemyBlack1.png")
     assets["Lazerenemy"] = pygame.image.load("assets\PNG\Lasers\laserRed04.png")
     assets["player damage"] = pygame.mixer.Sound("assets\Bonus\sfx_lose.ogg")
+    assets["gameover"] = pygame.mixer.Sound("assets\Sounds\Defeated (Game Over Tune).ogg")
 
     # loads assets for data 1
     enemy_data_1["image"] = assets["enemy1"]
