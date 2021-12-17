@@ -12,17 +12,14 @@ class Wave(GameObject):
 
 
 # each index in this array is a wave
-waves = [
-Wave(),
-Wave(),
-Wave()
-]
+waves = []
+
+for x in range(50):
+    waves.append(Wave())
 
 
 # this loads each wave
 def load_waves():
-    waves[0].entities = [
-        Enemy(0,0, 93,84,0,x,random.choice(enemy_ships)) for x in range(1)
-        ]
-    waves[1].entities = [Enemy(0,0, 93,84,0,x,random.choice(enemy_ships)) for x in range(2)]
-    waves[2].entities = [Enemy(0,0, 93,84,0,x,random.choice(enemy_ships)) for x in range(3)]
+    for i in range(50):
+        waves[i].entities = [Enemy(0,0, 93,84,0,x,random.choice(enemy_ships)) for x in range(i+2)]
+
