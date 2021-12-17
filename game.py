@@ -71,6 +71,9 @@ class Game():
     # enemy num is what determines if you have killed everything in the wave. 0 means no more enemys which will start the next wave
     enemynum = 0
 
+    # makes next shot a super shop
+    nextsuper = False
+
 
     # this loops the background so it will fill the whole screen. I need to do this because the background is smaller then the resoultion
     # of the scren
@@ -156,6 +159,8 @@ class Game():
                     mixer.music.load("assets/Sounds/SkyFire (Title Screen).ogg")
                     mixer.music.set_volume(0.1)
                     mixer.music.play(loops=-1)
+                if event.key == K_1:
+                    self.nextsuper = True
 
             # checks if the player clicks
             if event.type == MOUSEBUTTONDOWN:
@@ -172,7 +177,6 @@ class Game():
             # closes teh game if you click the x at the top right
             if event.type == pygame.QUIT:
                 self.doClose = True
-                self.save()
                 pygame.quit()
                 exit(0)
 
@@ -185,6 +189,9 @@ class Game():
         # checks if next wave should be equal to true by checking the enemy num
         if self.enemynum < 1:
             self.wave += 1
+            luck = random.randint(1,100)
+            if luck < 20:
+                self.player.supershot += 1
             self.nextwave = True
 
 
@@ -201,8 +208,13 @@ class Game():
                 collision.dealdamage() # deal damage to enemy here
 
                 # if the health of the enemy is zero it will kill the enemy
-                if collision.health <= 0:
+                if collision.health <= 0 or self.nextsuper:
                     collision.kill()
+                    luck = random.randint(1,100)
+                    if luck < 40:
+                        self.player.health += 1
+                    if self.nextsuper:
+                        self.nextsuper = False
                     # it will also lower the number of enemys by 1
                     self.enemynum -= 1
             # this line of code makes sure the bullet dies
@@ -244,8 +256,12 @@ class Game():
         health.SetValue(f"Health: {self.player.health}", assets["font_25"])
 
         # wave bar
-        wave = TextObject(assets["font_16"], (700,500), 0, False)
+        wave = TextObject(assets["font_25"], (700,500), 0, False)
         wave.SetValue(f"Wave: {self.wave+1}", assets["font_25"])
+
+        # power ups
+        supershot = TextObject(assets["font_25"], (200,50), 0, False)
+        supershot.SetValue(f"SuperShot(Press 1): {self.player.supershot}", assets["font_25"])
 
         #update
         self.objects.update(self.deltatime)
@@ -259,6 +275,7 @@ class Game():
         enemy_bullets.draw(self.screen)
         self.screen.blit(health.text, health.rect)
         self.screen.blit(wave.text, wave.rect)
+        self.screen.blit(supershot.text, supershot.rect)
 
         pygame.display.flip()
 
@@ -318,9 +335,8 @@ class Game():
         for x in self.enemys:
             x.kill()
         self.wave = 0
-        print(self.wave)
         self.nextwave = True
         self.enemynum = 0
         self.gameState = "game"
-        print(self.gameState)
         self.player.health = 3
+        self.nextsuper = False

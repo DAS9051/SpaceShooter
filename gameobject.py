@@ -45,6 +45,7 @@ class Player(GameObject):
         self.shoottimer = 0
         self.health = 3
         self.id = "player"
+        self.supershot = 0
 
 
     def update(self, deltatime):

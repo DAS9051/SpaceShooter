@@ -36,17 +36,17 @@ def LoadAssets():
     # loads assets for data 1
     enemy_data_1["image"] = assets["enemy1"]
     enemy_data_1["layer"] = 3
-    enemy_data_1["speed"] = random.randint(100, 175)
+    enemy_data_1["speed"] = random.randint(75, 175)
     enemy_data_1["health"] = 3
-    enemy_data_1["shootspeed"] = random.randint(1,3)
+    enemy_data_1["shootspeed"] = random.randint(1,5)
     enemy_data_1["bulletimage"] = assets["Lazerenemy"]
 
     # loads assets for data 2
     enemy_data_2["image"] = assets["enemy2"]
     enemy_data_2["layer"] = 3
-    enemy_data_2["speed"] = random.randint(100, 175)
+    enemy_data_2["speed"] = random.randint(75, 175)
     enemy_data_2["health"] = 3
-    enemy_data_2["shootspeed"] = random.randint(1,3)
+    enemy_data_2["shootspeed"] = random.randint(1,5)
     enemy_data_2["bulletimage"] = assets["Lazerenemy"]
     
     # adds enemy 1 to enemy_ships
