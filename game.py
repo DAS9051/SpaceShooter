@@ -31,7 +31,7 @@ class Game():
     pygame.display.set_caption("Space Shooter")
 
     # these 2 lines of code are resonsible for the icon of the window
-    icon = pygame.image.load("assets\PNG\playerShip2_red.png")
+    icon = pygame.image.load("assets/PNG/playerShip2_red.png")
     pygame.display.set_icon(icon)
 
     # this initializes the mixer in pygame
@@ -149,7 +149,7 @@ class Game():
                 if (event.key == K_SPACE or event.key == K_ESCAPE):
                     # puts the game on pause and puts the pause music on
                     self.gameState = "pause"
-                    mixer.music.load("assets\Sounds\SkyFire (Title Screen).ogg")
+                    mixer.music.load("assets/Sounds/SkyFire (Title Screen).ogg")
                     mixer.music.set_volume(0.1)
                     mixer.music.play(loops=-1)
 
@@ -264,7 +264,7 @@ class Game():
             if event.type == KEYDOWN:
                 if (event.key == K_SPACE or event.key == K_ESCAPE):
                     self.gameState = "game"
-                    mixer.music.load("assets\Sounds\Battle in the Stars.ogg")
+                    mixer.music.load("assets/Sounds/Battle in the Stars.ogg")
                     mixer.music.set_volume(0.1)
                     mixer.music.play(-1)
             if event.type == pygame.QUIT:
@@ -281,7 +281,7 @@ class Game():
             if event.type == KEYDOWN:
                 if (event.key == K_SPACE or event.key == K_ESCAPE):
                     self.gameState = "game"
-                    mixer.music.load("assets\Sounds\Battle in the Stars.ogg")
+                    mixer.music.load("assets/Sounds/Battle in the Stars.ogg")
                     mixer.music.set_volume(0.1)
                     mixer.music.play(-1)
             if event.type == pygame.QUIT:

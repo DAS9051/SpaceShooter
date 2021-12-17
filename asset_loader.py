@@ -25,12 +25,13 @@ def LoadAssets():
     assets["playerShip1_blue"] = pygame.image.load("assets/PNG/playerShip1_blue.png")
     assets["font_16"] = pygame.font.Font("assets/Bonus/kenvector_future.ttf", 16)
     assets["font_25"] = pygame.font.Font("assets/Bonus/kenvector_future.ttf", 25)
-    assets["Lazer"] = pygame.image.load("assets\PNG\Lasers\laserBlue02.png")
-    assets["enemy1"] = pygame.image.load("assets\PNG\Enemies\enemyBlack2.png")
-    assets["enemy2"] = pygame.image.load("assets\PNG\Enemies\enemyBlack1.png")
-    assets["Lazerenemy"] = pygame.image.load("assets\PNG\Lasers\laserRed04.png")
-    assets["player damage"] = pygame.mixer.Sound("assets\Bonus\sfx_lose.ogg")
-    assets["gameover"] = pygame.mixer.Sound("assets\Sounds\Defeated (Game Over Tune).ogg")
+    assets["Lazer"] = pygame.image.load("assets/PNG/Lasers/laserBlue02.png")
+    assets["enemy1"] = pygame.image.load("assets/PNG/Enemies/enemyBlack2.png")
+    assets["enemy2"] = pygame.image.load("assets/PNG/Enemies/enemyBlack1.png")
+    assets["Lazerenemy"] = pygame.image.load("assets/PNG/Lasers/laserRed04.png")
+    assets["player damage"] = pygame.mixer.Sound("assets/Bonus/sfx_lose.ogg")
+    assets["gameover"] = pygame.mixer.Sound("assets/Sounds/Defeated (Game Over Tune).ogg")
+    assets["damage_sound"] = pygame.mixer.Sound("assets/Bonus/sfx_lose.ogg")
 
     # loads assets for data 1
     enemy_data_1["image"] = assets["enemy1"]

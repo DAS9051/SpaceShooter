@@ -74,8 +74,7 @@ class Enemy(GameObject):
     def dealdamage(self):
         
         # this plays a sound when the enemy is hit
-        damage_sound = pygame.mixer.Sound("assets\Bonus\sfx_lose.ogg")
-        pygame.mixer.Sound.play(damage_sound)
+        pygame.mixer.Sound.play(assets["damage_sound"])
 
         # makes the enemy lose health
         self.health -= 1
