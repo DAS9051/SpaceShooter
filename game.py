@@ -11,7 +11,6 @@ from static import *
 from textobject import TextObject
 from wave import load_waves
 from pygame import mixer
-import json
 
 class Game():
     # sets resolution of screen
@@ -114,6 +113,11 @@ class Game():
     # this is making the text for the Death Screen
     death = TextObject(assets["font_25"], (800,500), 0, True)
     death.SetValue("You Have lost", assets["font_25"])
+
+    # this is making the text for the play again Screen
+    again = TextObject(assets["font_16"], (800,600), 0, True)
+    again.SetValue("Click SPACE to play again or click exit to leave", assets["font_16"])
+
 
 
     # this just sets the screen to self.screen
@@ -297,6 +301,9 @@ class Game():
 
     def run_gameover(self):
         for event in pygame.event.get():
+            if event.type == KEYDOWN:
+                if (event.key == K_SPACE):
+                    self.playagain()
             if event.type == pygame.QUIT:
                 self.doClose = True
                 pygame.quit()
@@ -304,4 +311,16 @@ class Game():
         
         self.screen.fill((255,255,255))
         self.screen.blit(self.death.text, self.death.rect)
+        self.screen.blit(self.again.text, self.again.rect)
         pygame.display.flip()
+    
+    def playagain(self):
+        for x in self.enemys:
+            x.kill()
+        self.wave = 0
+        print(self.wave)
+        self.nextwave = True
+        self.enemynum = 0
+        self.gameState = "game"
+        print(self.gameState)
+        self.player.health = 3
