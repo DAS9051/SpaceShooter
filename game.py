@@ -211,7 +211,7 @@ class Game():
                 if collision.health <= 0 or self.nextsuper:
                     collision.kill()
                     luck = random.randint(1,100)
-                    if luck < 40:
+                    if luck < 25:
                         self.player.health += 1
                     if self.nextsuper:
                         self.nextsuper = False
