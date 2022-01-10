@@ -11,6 +11,8 @@ from static import *
 from textobject import TextObject
 from wave import load_waves
 from pygame import mixer
+import sys
+import os
 
 class Game():
     # sets resolution of screen

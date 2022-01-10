@@ -3,6 +3,8 @@ from game import Game
 from pygame.constants import *
 from pygame import mixer
 pygame.init()
+import sys
+import os
 
 winOpen = True
 game = Game(800, 600)

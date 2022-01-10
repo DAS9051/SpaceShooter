@@ -3,6 +3,8 @@ from pygame.sprite import *
 import pygame
 from pygame import mixer
 from asset_loader import *
+import sys
+import os
 
 
 # creats a gameobject class that inhertes from sprite

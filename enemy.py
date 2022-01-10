@@ -1,6 +1,8 @@
 from gameobject import *
 import random
 from static import *
+import sys
+import os
 
 # makes enemy class that inherites from gambeobject
 class Enemy(GameObject):

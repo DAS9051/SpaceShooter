@@ -1,5 +1,7 @@
 import pygame
 import random
+import sys
+import os
 
 # starts the font pygame module
 pygame.font.init()
