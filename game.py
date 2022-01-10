@@ -214,6 +214,7 @@ class Game():
                     if luck < 10:
                         self.player.health += 1
                     if self.nextsuper:
+                        self.player.supershot -= 1
                         self.nextsuper = False
                     # it will also lower the number of enemys by 1
                     self.enemynum -= 1
@@ -280,11 +281,15 @@ class Game():
         pygame.display.flip()
 
 
+    # runs menu
     def run_menu(self):
         for event in pygame.event.get():
             if event.type == KEYDOWN:
+                # runs this if you click space or escape
                 if (event.key == K_SPACE or event.key == K_ESCAPE):
+                    # changes gamestate to game
                     self.gameState = "game"
+                    # plays menu music
                     mixer.music.load("assets/Sounds/Battle in the Stars.ogg")
                     mixer.music.set_volume(0.1)
                     mixer.music.play(-1)
@@ -297,10 +302,13 @@ class Game():
         self.screen.blit(self.title.text, self.title.rect)
         pygame.display.flip()
     
+    # runs pause
     def run_pause(self):
         for event in pygame.event.get():
             if event.type == KEYDOWN:
+                # runs this if you click space or escape
                 if (event.key == K_SPACE or event.key == K_ESCAPE):
+                    # changes game state to game
                     self.gameState = "game"
                     mixer.music.load("assets/Sounds/Battle in the Stars.ogg")
                     mixer.music.set_volume(0.1)
@@ -340,3 +348,4 @@ class Game():
         self.gameState = "game"
         self.player.health = 3
         self.nextsuper = False
+        self.player.supershot = 0
