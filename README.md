@@ -1,5 +1,7 @@
 # SpaceShooter
 
+## Code Break Down
+
 ## Installation / Playing
 
 **How to install**:
@@ -10,8 +12,13 @@ Step 2: If you downloaded the zip extract it whereever you want it to be saved\
 Step 3: Install pygame by typing ```pip install pygame``` in cmd\
 Step 4: To play the game go in the directory of the project and type ```python main.py``` in cmd
 
-**How to play from replit**:
+pip error:\
+![image](https://user-images.githubusercontent.com/76439712/148821769-401ec601-8067-4dd2-bda1-275685fafe2a.png)
+if you want to fix that: https://youtu.be/AdUZArA-kZw
+
+
+**How to play from replit(no sound)**:
 
 Step 1: Go to https://play.spaceshooter.dylansahota.com \
 Step 2: Run the Replit\
-Step 3: Resize the window![image](https://user-images.githubusercontent.com/76439712/148814477-e77ae45c-4975-4cc5-bcc2-2a40942d76d6.png)
+Step 3: Resize the window![image](https://user-images.githubusercontent.com/76439712/148819398-696a3508-e7cc-4773-9f53-c1bbdb3690b8.png)
