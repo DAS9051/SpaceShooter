@@ -12,10 +12,6 @@ Step 2: If you downloaded the zip extract it whereever you want it to be saved\
 Step 3: Install pygame by typing ```pip install pygame``` in cmd\
 Step 4: To play the game go in the directory of the project and type ```python main.py``` in cmd
 
-pip error:\
-![image](https://user-images.githubusercontent.com/76439712/148821769-401ec601-8067-4dd2-bda1-275685fafe2a.png)
-if you want to fix that: https://youtu.be/AdUZArA-kZw
-
 
 **How to play from replit(no sound)**:
 
