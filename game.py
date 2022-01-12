@@ -312,9 +312,11 @@ class Game():
                 if (event.key == K_SPACE or event.key == K_ESCAPE):
                     # changes game state to game
                     self.gameState = "game"
+                    # plays game music
                     mixer.music.load("assets/Sounds/Battle in the Stars.ogg")
                     mixer.music.set_volume(0.1)
                     mixer.music.play(-1)
+            # closes game if you click the x
             if event.type == pygame.QUIT:
                 self.doClose = True
                 pygame.quit()
@@ -326,9 +328,11 @@ class Game():
         pygame.display.flip()
     
 
+    # function for the game over scene
     def run_gameover(self):
         for event in pygame.event.get():
             if event.type == KEYDOWN:
+                # if you click space you can play again
                 if (event.key == K_SPACE):
                     self.playagain()
             if event.type == pygame.QUIT:
@@ -336,14 +340,18 @@ class Game():
                 pygame.quit()
                 exit(0)
         
+
         self.screen.fill((255,255,255))
         self.screen.blit(self.death.text, self.death.rect)
         self.screen.blit(self.again.text, self.again.rect)
         pygame.display.flip()
     
+    # function to restart the games settings
     def playagain(self):
         for x in self.enemys:
             x.kill()
+
+        # sets all the game varables to defult so the player can play the game starting from wave 1
         self.wave = 0
         self.nextwave = True
         self.enemynum = 0
