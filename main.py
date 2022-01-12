@@ -23,4 +23,4 @@ while winOpen:
     if not game.doClose:
         game.loop()
     else:
-        winOpen = False
+        winOpen = False 
