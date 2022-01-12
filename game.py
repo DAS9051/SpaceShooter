@@ -11,8 +11,7 @@ from static import *
 from textobject import TextObject
 from wave import load_waves
 from pygame import mixer
-import sys
-import os
+
 
 class Game():
     # sets resolution of screen
@@ -115,9 +114,7 @@ class Game():
     pause = TextObject(assets["font_25"], (800,500), 0, True)
     pause.SetValue("Click Space or ESC to continue", assets["font_25"])
 
-    # this is making the text for the Death Screen
-    death = TextObject(assets["font_25"], (800,500), 0, True)
-    death.SetValue("You Have lost", assets["font_25"])
+
 
     # this is making the text for the play again Screen
     again = TextObject(assets["font_16"], (800,600), 0, True)
@@ -339,10 +336,13 @@ class Game():
                 self.doClose = True
                 pygame.quit()
                 exit(0)
+                # this is making the text for the Death Screen
+        death = TextObject(assets["font_25"], (800,500), 0, True)
+        death.SetValue(f"You Have lost you got to wave {self.wave}", assets["font_25"])
         
 
         self.screen.fill((255,255,255))
-        self.screen.blit(self.death.text, self.death.rect)
+        self.screen.blit(death.text, death.rect)
         self.screen.blit(self.again.text, self.again.rect)
         pygame.display.flip()
     

@@ -1,6 +1,5 @@
 import pygame
-import sys
-import os
+
  
 # creats a class for the text
 class TextObject:

@@ -2,8 +2,6 @@ import pygame
 from pygame import sprite
 from projectile import Projectile
 from asset_loader import *
-import sys
-import os
 
 
 

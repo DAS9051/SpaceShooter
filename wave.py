@@ -2,8 +2,7 @@ from random import randint
 from gameobject import *
 from enemy import *
 from asset_loader import *
-import sys
-import os
+
 
 # makes a class for the wave that inhertes game object
 class Wave(GameObject):

@@ -1,6 +1,4 @@
 from gameobject import *
-import sys
-import os
 
 # projectily class that inhertices from gameobject
 class Projectile(GameObject):
