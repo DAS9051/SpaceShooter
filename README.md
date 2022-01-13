@@ -22,6 +22,9 @@ https://www.youtube.com/watch?v=353F9-NWnC0
 
 ## Installation / Playing
 
+You can see the relases of the game on the right of the screen\
+![image](https://user-images.githubusercontent.com/76439712/149391812-341f124d-f11e-4912-8677-6dd1e1b0f3f8.png)
+
 ### **How to install the exe from zip**
 
 Step 1: Install the zip file\
