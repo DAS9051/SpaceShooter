@@ -243,7 +243,7 @@ class Game():
                 if collision.id == "player":
                     # this metod makes the player take damage, the method is located in gameobject.py
                     self.player.takedamage()
-                    hits.kill()
+                    hits.kill() # kills the bullet
 
         if self.player.health < 1:
             pygame.mixer.Sound.play(assets["player damage"])
