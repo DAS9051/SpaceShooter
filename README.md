@@ -1,6 +1,18 @@
 # SpaceShooter
 
+## Game controls
+
+WASD to move
+Left Mouse Button to shoot
+1 to use supershot ability (next attack is 1 shot)
+
+## Game Mechanics
+
+
+
 ## Code Break Down
+
+https://www.youtube.com/watch?v=353F9-NWnC0
 
 ## Installation / Playing
 
