@@ -2,12 +2,18 @@
 
 ## Game controls
 
-WASD to move
-Left Mouse Button to shoot
-1 to use supershot ability (next attack is 1 shot)
+- WASD to move
+- Left Mouse Button to shoot
+- 1 to use supershot ability (next attack is 1 shot)
 
 ## Game Mechanics
 
+- Starts with 2 enemys adds 1 each wave
+- Enemy shooting speed and movement speed are random
+- Player starts with 3 health
+- When you kill an enemy there is a 9% chance you will get one more health
+- When you finish the wave there is a 19% chance you will get one more super shot ability
+- Click Space bar to pause game
 
 
 ## Code Break Down
