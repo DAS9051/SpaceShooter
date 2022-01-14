@@ -24,3 +24,4 @@ while winOpen:
         game.loop()
     else:
         winOpen = False 
+
