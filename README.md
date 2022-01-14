@@ -8,7 +8,7 @@
 
 ## Game Mechanics
 
-- Starts with 2 enemys adds 1 each wave
+- Starts with 2 enemies adds 1 each wave
 - Enemy shooting speed and movement speed are random
 - Player starts with 3 health
 - When you kill an enemy there is a 9% chance you will get one more health
