@@ -41,7 +41,7 @@ Step 4: Run the exe (the asset folder should be with it)\
 
 ### **How to install the python project**:
 
-Step 1: Clone the project by either downloading the zip or cloneing the project with git\
+Step 1: Clone the project by either downloading the zip or cloning the project with git\
 ![image](https://user-images.githubusercontent.com/76439712/148811525-093697d1-0005-48a2-9554-3ab65c30a7a2.png)
 Step 2: If you downloaded the zip extract it whereever you want it to be saved\
 Step 3: Type ```pip install -r requirements.txt```\
